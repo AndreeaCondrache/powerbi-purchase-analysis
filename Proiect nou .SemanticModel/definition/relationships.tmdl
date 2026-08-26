@@ -1,5 +1,0 @@
-relationship 7f67cec4-0c38-467b-8e1e-11c14fc7dcca
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Puchase Overview'.Date
-	toColumn: LocalDateTable_b0b16f70-70cc-45c6-a2f1-0d7d559bbf34.Date
-
