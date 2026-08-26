@@ -35,7 +35,6 @@ The primary objective of this project was to transform raw/pivoted purchase data
 ### Dynamic Filtering & Product Selection
 ![Power BI Filtered View](images/filtered_view.png)
 
-> *Note: Place your screenshot images inside an `images/` folder in the root directory.*
 
 ---
 ## 🧰 Tools & Technologies Used
