@@ -30,7 +30,7 @@ The primary objective of this project was to transform raw/pivoted purchase data
 ## 🖼️ Dashboard Preview
 
 ### Report Overview
-![Power BI Dashboard Overview](images/dashboard_overview.png)
+![Power BI Dashboard Overview](images/dashboard.png)
 
 ### Dynamic Filtering & Product Selection
 ![Power BI Filtered View](images/filtered_view.png)
@@ -38,23 +38,6 @@ The primary objective of this project was to transform raw/pivoted purchase data
 > *Note: Place your screenshot images inside an `images/` folder in the root directory.*
 
 ---
-
-## 🚀 How to Run / Open This Project
-
-1. **Prerequisites:**
-   - Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/).
-
-2. **Clone the repository:**
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/powerbi-purchase-analysis.git
-   cd powerbi-purchase-analysis
-   ```
-
-3. **Open the project:**
-   - Open `Purchase_Analysis.pbix` directly in **Power BI Desktop**.
-
----
-
 ## 🧰 Tools & Technologies Used
 - **Power BI Desktop**
 - **DAX (Data Analysis Expressions)**
