@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Purchase & Cost Analysis Dashboard."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8658e880-03df-4fe5-9a1a-775188f2cef2"
+  }
+}

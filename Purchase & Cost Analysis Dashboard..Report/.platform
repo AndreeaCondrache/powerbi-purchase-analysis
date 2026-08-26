@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Purchase & Cost Analysis Dashboard."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bf014906-9b8e-4e8c-b5df-8d2d27e7f1db"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "0b31fda013a843f47705",
+  "position": {
+    "x": 456.66666666666669,
+    "y": 128.33333333333334,
+    "z": 7,
+    "height": 385,
+    "width": 231.66666666666669,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Puchase Overview"
+                    }
+                  },
+                  "Property": "Max Product Cost"
+                }
+              },
+              "queryRef": "Puchase Overview.Max Product Cost",
+              "nativeQueryRef": "Max Product Cost"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

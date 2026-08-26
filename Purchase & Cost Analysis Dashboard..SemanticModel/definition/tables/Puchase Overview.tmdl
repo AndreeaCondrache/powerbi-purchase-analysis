@@ -1,0 +1,91 @@
+table 'Puchase Overview'
+	lineageTag: a08e2511-229f-4e6f-87b6-ca517d4d05e0
+
+	measure 'Total Cost' = SUM('Puchase Overview'[Product Cost])
+		lineageTag: 20cc2aa1-304c-4a23-a7d5-ea90cb1e42e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Cost' = AVERAGE('Puchase Overview'[Product Cost])
+		lineageTag: a7ebc4cd-1f1b-4c45-8481-a62926ad2ecd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Purchases' = COUNTROWS('Puchase Overview')
+		formatString: 0
+		lineageTag: e1b60d75-c92d-4589-881d-fbbce8f1c3e2
+
+	measure Calendar = CALENDAR(DATE(2022,1,1), DATE(2022,12,31))
+		formatString: General Date
+		lineageTag: 0c8b9002-ff59-4f54-b3a1-ba12db85f7cc
+
+	measure 'Max Product Cost' = MAX('Puchase Overview'[Product Cost])
+		lineageTag: 1f26d9c8-4908-4190-8760-0a4c90f19905
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Store
+		dataType: string
+		lineageTag: 52528560-3c04-452b-b354-307b8ae9375b
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column Products
+		dataType: string
+		lineageTag: 5354a350-e125-4d18-9b54-5c919e4ccad7
+		summarizeBy: none
+		sourceColumn: Products
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da094d63-6260-450f-a66a-534db20a6305
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variație
+			isDefault
+			relationship: 7f67cec4-0c38-467b-8e1e-11c14fc7dcca
+			defaultHierarchy: LocalDateTable_b0b16f70-70cc-45c6-a2f1-0d7d559bbf34.'Ierarhie de date'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Product Cost'
+		dataType: double
+		lineageTag: d1d26220-0dff-44e8-b5a7-0998ff00726a
+		summarizeBy: sum
+		sourceColumn: Product Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Puchase Overview' = m
+		mode: import
+		source =
+				let
+				    Sursă = Excel.Workbook(File.Contents("C:\Users\andre\Downloads\Apocolypse Food Prep - Power Query Editor Tutorial.xlsx"), null, true),
+				    #"Puchase Overview_Sheet" = Sursă{[Item="Puchase Overview",Kind="Sheet"]}[Data],
+				    #"Anteturi promovate" = Table.PromoteHeaders(#"Puchase Overview_Sheet", [PromoteAllScalars=true]),
+				    #"Tip modificat" = Table.TransformColumnTypes(#"Anteturi promovate",{{"Apocolypse Food Prep Overview", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}}),
+				    #"Rânduri de nivel superior eliminate" = Table.Skip(#"Tip modificat",2),
+				    #"Anteturi promovate1" = Table.PromoteHeaders(#"Rânduri de nivel superior eliminate", [PromoteAllScalars=true]),
+				    #"Tip modificat1" = Table.TransformColumnTypes(#"Anteturi promovate1",{{"Location", type text}, {"Products", type text}, {"01.01.2022", type number}, {"01.02.2022", Currency.Type}, {"01.03.2022", Currency.Type}, {"01.04.2022", Currency.Type}, {"Grand Total", type number}}),
+				    #"Rânduri filtrate" = Table.SelectRows(#"Tip modificat1", each [Location] <> null and [Location] <> ""),
+				    #"Coloane eliminate" = Table.RemoveColumns(#"Rânduri filtrate",{"Grand Total"}),
+				    #"Coloane cu pivotare anulată" = Table.UnpivotOtherColumns(#"Coloane eliminate", {"Location", "Products"}, "Atribut", "Valoare"),
+				    #"Tip modificat2" = Table.TransformColumnTypes(#"Coloane cu pivotare anulată",{{"Atribut", type date}}),
+				    #"Coloane redenumite" = Table.RenameColumns(#"Tip modificat2",{{"Valoare", "Product Cost"}, {"Location", "Store"}, {"Atribut", "Date"}})
+				in
+				    #"Coloane redenumite"
+
+	annotation PBI_NavigationStepName = Navigare
+
+	annotation PBI_ResultType = Table
+
